@@ -1,0 +1,78 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="cotainer-fluid" >
+        <h1 style="color: aliceblue;" >invoice</h1>
+        <div class="d-flex">
+          <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Item
+          </button>
+            </div>
+        </div>
+  </nav>
+<table class="table mt-3 ">
+  <thead>
+    <tr>
+        
+        <th scope="col">Index</th>
+        <th type="date" scope="col">productName</th>
+        <th  scope="col">price</th>
+        <th  scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr  *ngFor="let itemDetails of itemsDetailsResponse">
+          <td scope="col">{{itemDetails.itemID}}</td>
+          <td type="date" scope="col">{{itemDetails.productName}}</td>
+          <td  scope="col">{{itemDetails.price}}</td>
+          <td>
+            <button class="btn btn-danger   ">EDIT</button>
+            <button class="btn btn-info mx-3  ">DELITE</button>
+          </td>
+      </tr>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit) = "postItem(form)" #form = "ngForm" >
+         
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Item Name</label>
+            <input   name="itemName" ngModel type="text" class="form-control" id="exampleFormControlInput1" placeholder="Item Name">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Item Date</label>
+            <input   name="itemDate" ngModel type="datetime-local" class="form-control" id="exampleFormControlInput1" placeholder=" ../../....">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Category Name </label>
+            <select  name="itemCategoryId" ngModel>
+              <option *ngFor="let cat of categories" value= {{cat.categoryID}}>
+                {{cat.categoryName}}
+              </option>
+            </select>
+
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+          
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+    
+ 
+
+
